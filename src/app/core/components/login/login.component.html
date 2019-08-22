@@ -1,9 +1,9 @@
-<form action="/action_page.php">
-  First name:<br>
-  <input type="text" name="firstname" value="Mickey">
+<form [formGroup]="loginForm" ngNativeValidate action="/action_page.php">
+  Email:<br>
+  <input type="text"  formControlName="email" name="firstname">
   <br>
-  Last name:<br>
-  <input type="text" name="lastname" value="Mouse">
+  Contraseña:<br>
+  <input type="password"  formControlName="password" name="Contraseña">
   <br><br>
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit" (click)="send()">
 </form>

@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<any> {
-    return this.http.get(this.API + '/users');
+  login(userLogin): Observable<any> {
+    return this.http.post(this.API + '/login', userLogin);
   }
 }
