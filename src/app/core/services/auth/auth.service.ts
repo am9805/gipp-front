@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  public API = 'http://gipp-back.herokuapp.com';
+
+  constructor(private http: HttpClient) { }
+
+  getUsers(): Observable<any> {
+    return this.http.get(this.API + '/users');
+  }
 }
