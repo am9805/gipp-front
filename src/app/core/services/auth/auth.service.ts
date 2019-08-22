@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  public API = 'http://gipp-back.herokuapp.com';
+  public API = 'https://gipp-back.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 
