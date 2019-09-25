@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
+import { AddReportComponent } from './reports/add-report/add-report.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddReportComponent
   ],
   imports: [
     BrowserModule,
