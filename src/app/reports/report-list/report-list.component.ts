@@ -50,9 +50,8 @@ export class ReportListComponent implements OnInit {
   }
    getAllReports(){
     this.reportService.getAllReports().subscribe(res =>{
-      this.reports = res['data']
+      this.reports = res
       console.log(this.reports);
-      
     });
    }
 
@@ -60,7 +59,6 @@ export class ReportListComponent implements OnInit {
     this.reportService.getResponsibleReports(this.userId).subscribe(res =>{
       this.reports = res['data']
       console.log(this.reports);
-      
     });
    }
  /**
@@ -70,7 +68,6 @@ export class ReportListComponent implements OnInit {
     this.reportService.getAllReports().subscribe(res =>{
       this.reports = res['data']
       console.log(this.reports);
-      
     });
    }
 
@@ -78,14 +75,12 @@ export class ReportListComponent implements OnInit {
     this.reportService.getMyReports(this.userId).subscribe(res =>{
       this.reports = res['data']
       console.log(this.reports);
-      
     });
    }
 
    public gertUserById(id){
      this.userService.getUserById(id).subscribe(res =>{
       return `${res['data']['name']} ${res['data']['lastname']}`;
-      
     });
    }
 }

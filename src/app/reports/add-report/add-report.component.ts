@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class AddReportComponent implements OnInit {
 
-  constructor(public reportService: ReportsService,private router: Router) { }
+  constructor(public reportService: ReportsService,
+  private router: Router) { }
 
   public reportForm: FormGroup;
   public report: FormControl;
@@ -35,7 +36,7 @@ export class AddReportComponent implements OnInit {
     this.reportService.addReport(reportInfo).subscribe(response => {
       if(response){
         alert(response["message"])
-        this.router.navigate(['/']);
+        this.router.navigate(['/inicio']);
       }
     });
   }
