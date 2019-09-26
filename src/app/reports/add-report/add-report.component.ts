@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-report',
@@ -9,7 +10,15 @@ export class AddReportComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  public reportForm: FormGroup;
+  public report: FormControl;
 
+  ngOnInit() {
+    this.reportForm = new FormGroup({
+      'userid': new FormControl('', Validators.required),
+      'zone': new FormControl('', Validators.required),
+      'date': new FormControl('', Validators.required),
+      'description': new FormControl('', Validators.required),
+    });
+  }
 }

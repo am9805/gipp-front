@@ -4,14 +4,7 @@ import { AddreportComponent } from './core/components/addreport/addreport.compon
 import { LoginComponent } from './core/components/login/login.component';
 
 
-const routes: Routes = [
-  { path: '',
-    component: LoginComponent
-  },
-  { path: 'addreport',
-    component: AddreportComponent
-  }
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

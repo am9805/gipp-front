@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AddreportComponent } from './components/addreport/addreport.component'
+import {CoreRouter} from './core.routes'
 
 @NgModule({
-  declarations: [LoginComponent, AddreportComponent],
+  declarations: [LoginComponent],
   exports : [
     LoginComponent
   ],
@@ -14,7 +14,8 @@ import { AddreportComponent } from './components/addreport/addreport.component'
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreRouter
   ]
 })
 export class CoreModule { }
