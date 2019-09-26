@@ -10,8 +10,7 @@ export class ReportsService {
   public API = 'https://gipp-back.herokuapp.com';
   constructor(private http: HttpClient) { }
 
-  addreport(idReport): Observable<any> {
-    return this.http.post(this.API + '/addreport', idReport);
+  addReport(report): Observable<any> {    
+    return this.http.post(this.API + '/addreport', report);
   }
-
 }
