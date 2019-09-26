@@ -8,10 +8,17 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   public API = 'https://gipp-back.herokuapp.com';
+  //public API = 'localhost:3000';
 
   constructor(private http: HttpClient) { }
 
-  login(userLogin): Observable<any> {
+  public login(userLogin): Observable<any> {
     return this.http.post(this.API + '/login', userLogin);
   }
+
+  public registerUser(newUserData): Observable<any> {
+    return this.http.post(this.API + '/singup', newUserData);
+  }
+
+
 }

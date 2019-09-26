@@ -1,3 +1,16 @@
-<p>
-  manage-reports works!
-</p>
+<div class="reportForm">
+    <h1> Gestionar Reporte: {{reportId}}</h1>
+      <form [formGroup]="reportForm" action="">
+        <p *ngIf="rol==='1'" >Responsable</p>
+        <select *ngIf="rol==='1'" formControlName="responsibleId" [ngClass]="{'no-touch': true}">
+                <option selected disabled> Responsable </option>
+                <option *ngFor="let user of users" (ngValue)="user.id" [value]="user.id">{{user.name}} {{user.lastname}}</option>
+        </select>
+        <p *ngIf="rol==='5'">Investigador</p>
+        <select *ngIf="rol==='5'" formControlName="investigatorId" [ngClass]="{'no-touch': true}">
+                <option selected disabled> Investigador </option>
+                <option *ngFor="let user of users" (ngValue)="user.id" [value]="user.id">{{user.name}} {{user.lastname}}</option>
+        </select>
+        <button type="submit" class="btn-send" (click)="send()">Enviar</button>
+      </form>
+  </div>

@@ -1,0 +1,15 @@
+<div class="registerForm">
+  <h1>Registro de Usuario</h1>
+  <form [formGroup]="registerForm" action="">
+    <input type="text" formControlName="name" placeholder="Nombre">
+    <input type="text" formControlName="lastname" placeholder="Apellido">
+    <input type="email" formControlName="email" placeholder="Correo">
+    <input type="password" formControlName="password" placeholder="Contraseña">
+    <p>ROL:</p>
+    <select formControlName="rol" [ngClass]="{'no-touch': true}">
+      <option selected disabled> ROL </option>
+      <option *ngFor="let rol of roles" (ngValue)="rol.idrol" [value]="rol.idrol">{{rol.name}}</option>
+    </select>
+    <button type="submit" class="btn-send" (click)="send()">Enviar</button>
+  </form>
+</div>

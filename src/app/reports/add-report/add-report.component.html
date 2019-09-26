@@ -1,3 +1,10 @@
-<p>
-  add-report works!
-</p>
+<div class="reportForm">
+  <h1>Reporte</h1>
+    <form [formGroup]="reportForm" action="">
+      <input type="text"  formControlName="userid" placeholder="ID">
+      <input type="text"  formControlName="zone" placeholder="Zona">
+      <input type="date"  formControlName="date" placeholder="Fecha">
+      <textarea formControlName="description" placeholder="Descripción"></textarea>
+      <button type="submit" class="btn-send" (click)="send()">Enviar</button>
+    </form>
+</div>

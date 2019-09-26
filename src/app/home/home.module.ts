@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import {CoreRouter} from './core.routes'
-import { RegisterComponent } from './components/register/register.component'
+import {HomeRouter} from './home.routes'
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [HomeComponent],
   exports : [
-    LoginComponent
+    HomeComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CoreRouter
+    HomeRouter
   ]
 })
-export class CoreModule { }
+export class HomeModule { }

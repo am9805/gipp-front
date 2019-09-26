@@ -1,9 +1,8 @@
-<form [formGroup]="loginForm">
-  Email:<br>
-  <input type="text"  formControlName="email" name="firstname">
-  <br>
-  Contraseña:<br>
-  <input type="password"  formControlName="password" name="Contraseña">
-  <br><br>
-  <input type="submit" value="Submit" (click)="send()">
-</form>
+<div class="loginForm">
+  <form [formGroup]="loginForm">
+      <h1>Login</h1>
+        <input type="text"  formControlName="email" placeholder="Correo">
+        <input type="password"  formControlName="password" placeholder="Contraseña">
+        <input type="submit" value="Entrar" (click)="send()">
+  </form>
+</div>
