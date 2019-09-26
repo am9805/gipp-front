@@ -18,7 +18,6 @@ export class AddReportComponent implements OnInit {
 
   ngOnInit() {
     this.reportForm = new FormGroup({
-      'userid': new FormControl('', Validators.required),
       'zone': new FormControl('', Validators.required),
       'date': new FormControl('', Validators.required),
       'description': new FormControl('', Validators.required),
@@ -27,7 +26,7 @@ export class AddReportComponent implements OnInit {
 
   send(){
     let reportInfo = {
-      'userid': this.reportForm.get('userid').value,
+      'userid': Number(localStorage.getItem('userId')),
       'zone': this.reportForm.get('zone').value,
       'date': this.reportForm.get('date').value,
       'description': this.reportForm.get('description').value
