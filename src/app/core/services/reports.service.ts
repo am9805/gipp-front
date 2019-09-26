@@ -23,4 +23,8 @@ export class ReportsService {
   public getResponsibleReports(responsibleId): Observable<any> {    
     return this.http.get(this.API + `/responsibleReports/${responsibleId}`);
   }
+
+  public updateReport(report): Observable<any> {    
+    return this.http.put(this.API + '/editReport', report);
+  }
 }

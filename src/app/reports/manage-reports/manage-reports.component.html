@@ -1,10 +1,16 @@
 <div class="reportForm">
-    <h1>Reporte</h1>
+    <h1> Gestionar Reporte: {{reportId}}</h1>
       <form [formGroup]="reportForm" action="">
-        <input type="text"  formControlName="userid" placeholder="ID">
-        <input type="text"  formControlName="zone" placeholder="Zona">
-        <input type="date"  formControlName="date" placeholder="Fecha">
-        <textarea formControlName="description" placeholder="Descripción"></textarea>
+        <p>Responsable</p>
+        <select *ngIf="rol==='1'" formControlName="responsibleId" [ngClass]="{'no-touch': true}">
+                <option selected disabled> Responsable </option>
+                <option *ngFor="let user of users">{{user.name}} {{user.lastname}}</option>
+        </select>
+        <p>Investigador</p>
+        <select *ngIf="rol==='1'" formControlName="investigatorId" [ngClass]="{'no-touch': true}">
+                <option selected disabled> Investigador </option>
+                <option *ngFor="let user of users">{{user.name}} {{user.lastname}}</option>
+        </select>
         <button type="submit" class="btn-send" (click)="send()">Enviar</button>
       </form>
   </div>

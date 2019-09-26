@@ -6,7 +6,7 @@ import { ReportListComponent } from './report-list/report-list.component';
 
 const reportRoutes: Routes = [
     { path: 'reporte/añadir', component: AddReportComponent },
-    { path: 'reporte/gestionar', component: ManageReportsComponent },
+    { path: 'reporte/gestionar/:id', component: ManageReportsComponent },
     {
         path: 'reporte/listar', component: ReportListComponent,
     },

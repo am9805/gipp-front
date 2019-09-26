@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReportsService } from 'src/app/core/services/reports.service';
+import {UserService} from '../../core/services/user.service'
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,27 +10,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./manage-reports.component.sass']
 })
 export class ManageReportsComponent implements OnInit {
-
-  constructor(public reportService: ReportsService,private router: Router) { }
-
+  rol: string;
+  users: any;
   public reportForm: FormGroup;
   public report: FormControl;
+  constructor(public reportService: ReportsService,private router: Router, private userService: UserService) { }
+
+  
 
   ngOnInit() {
+    this.rol = localStorage.getItem('userRol');
     this.reportForm = new FormGroup({
-      'userid': new FormControl('', Validators.required),
-      'zone': new FormControl('', Validators.required),
-      'date': new FormControl('', Validators.required),
-      'description': new FormControl('', Validators.required),
+      'responsibleId': new FormControl('', Validators.required),
+      'investigatorId': new FormControl('', Validators.required),
+    });
+    this.getUsers();
+  }
+  getUsers(){
+    this.userService.getUsers().subscribe(res => {
+      this.users = res;
     });
   }
 
   send(){
     let reportInfo = {
-      'userid': this.reportForm.get('userid').value,
-      'zone': this.reportForm.get('zone').value,
-      'date': this.reportForm.get('date').value,
-      'description': this.reportForm.get('description').value
+      'reportid': '',
+      'responsibleid': this.reportForm.get('responsibleId').value,
+      'investigatorid': this.reportForm.get('investigatorId').value,
     };
     console.log(reportInfo);
     this.reportService.addReport(reportInfo).subscribe(response => {

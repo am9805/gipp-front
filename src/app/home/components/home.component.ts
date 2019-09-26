@@ -7,10 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
+  rol: string;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.rol = localStorage.getItem('userRol');
   }
 
   goToMyReports(){

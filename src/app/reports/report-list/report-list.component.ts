@@ -50,7 +50,7 @@ export class ReportListComponent implements OnInit {
   }
    getAllReports(){
     this.reportService.getAllReports().subscribe(res =>{
-      this.reports = res['data']
+      this.reports = res
       console.log(this.reports);
       
     });
@@ -87,5 +87,9 @@ export class ReportListComponent implements OnInit {
       return `${res['data']['name']} ${res['data']['lastname']}`;
       
     });
+   }
+
+   goToUpdate(id){
+    this.router.navigate([`/reporte/gestionar/${id}`]);
    }
 }
