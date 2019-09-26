@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReportsService } from 'src/app/core/services/reports.service';
 import {UserService} from '../../core/services/user.service'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manage-reports',
@@ -14,15 +14,21 @@ export class ManageReportsComponent implements OnInit {
   users: any;
   public reportForm: FormGroup;
   public report: FormControl;
-  constructor(public reportService: ReportsService,private router: Router, private userService: UserService) { }
+  reportId;
+  constructor(public reportService: ReportsService,
+    private router: Router, 
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute) { }
 
   
 
   ngOnInit() {
+    this.reportId = Number(this.activatedRoute.snapshot.url[2].path.toString()) ;
+    
     this.rol = localStorage.getItem('userRol');
     this.reportForm = new FormGroup({
-      'responsibleId': new FormControl('', Validators.required),
-      'investigatorId': new FormControl('', Validators.required),
+      'responsibleId': new FormControl('', ),
+      'investigatorId': new FormControl('',),
     });
     this.getUsers();
   }
@@ -34,15 +40,14 @@ export class ManageReportsComponent implements OnInit {
 
   send(){
     let reportInfo = {
-      'reportid': '',
-      'responsibleid': this.reportForm.get('responsibleId').value,
-      'investigatorid': this.reportForm.get('investigatorId').value,
+      'reportid': this.reportId,
+      'responsibleid': Number(this.reportForm.get('responsibleId').value),
+      'investigatorid': Number(this.reportForm.get('investigatorId').value),
     };
-    console.log(reportInfo);
-    this.reportService.addReport(reportInfo).subscribe(response => {
+    this.reportService.updateReport(reportInfo).subscribe(response => {
       if(response){
         alert(response["message"])
-        this.router.navigate(['/']);
+        this.router.navigate(['/inicio']);
       }
     });
   }

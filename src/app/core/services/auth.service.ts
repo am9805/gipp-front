@@ -15,4 +15,10 @@ export class AuthService {
   public login(userLogin): Observable<any> {
     return this.http.post(this.API + '/login', userLogin);
   }
+
+  public registerUser(newUserData): Observable<any> {
+    return this.http.post(this.API + '/singup', newUserData);
+  }
+
+
 }

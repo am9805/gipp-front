@@ -14,6 +14,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.rol = localStorage.getItem('userRol');
   }
+  goToRegister(){
+    this.router.navigate(['registro']);
+  }
 
   goToMyReports(){
     this.router.navigate(['reporte/listar/misReportes']);

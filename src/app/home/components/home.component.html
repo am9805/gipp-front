@@ -1,19 +1,9 @@
-<div (click)="goToCreateReport()">
-  <h2>Crear reporte</h2>
-</div>
-
-<div  (click)="goToMyReports()">
-  <h2>Ver mis reportes creados</h2>
-</div>
-
-<div  (click)="goToResponsibleReports()">
-  <h2>Ver mis reportes como responsable</h2>
-</div>
-
-<div  (click)="goToInvestigatorReports()">
-  <h2>Ver mis reportes como investigador</h2>
-</div>
-
-<div *ngIf="rol==='1'" (click)="goToAllReports()">
-  <h2>Ver todos los reportes</h2>
+<div class="homeForm">
+  <h1>GIPP</h1>
+    <button *ngIf="rol==='1'" type="submit" class="btn-send" (click)="goToRegister()">Registrar Usuario</button>
+    <button type="submit" class="btn-send" (click)="goToCreateReport()">Crear reporte</button>
+    <button type="submit" class="btn-send" (click)="goToMyReports()">Ver mis reportes creados</button>
+    <button type="submit" class="btn-send" (click)="goToResponsibleReports()">Ver mis reportes como responsable</button>
+    <button type="submit" class="btn-send" (click)="goToInvestigatorReports()">Ver mis reportes como investigador</button>
+    <button *ngIf="rol==='1'" type="submit" class="btn-send" (click)="goToAllReports()">Ver todos los reportes</button>
 </div>
