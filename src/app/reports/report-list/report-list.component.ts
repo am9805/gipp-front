@@ -39,7 +39,7 @@ export class ReportListComponent implements OnInit {
         break; 
      } 
      case 'investigador': { 
-      //statements; 
+      this.getInvestigatorReports();
       break; 
    } 
       default: { 
@@ -65,7 +65,7 @@ export class ReportListComponent implements OnInit {
   * TODAVIA NO ESTA
   */
    getInvestigatorReports(){
-    this.reportService.getAllReports().subscribe(res =>{
+    this.reportService.getInvestigatorReports(this.userId).subscribe(res =>{
       this.reports = res['data']
     });
    }

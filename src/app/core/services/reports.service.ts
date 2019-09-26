@@ -13,7 +13,9 @@ export class ReportsService {
   public addReport(report): Observable<any> {    
     return this.http.post(this.API + '/addreport', report);
   }
-
+  public getInvestigatorReports(investigatorId): Observable<any> {    
+    return this.http.get(this.API + `/investigatorReports/${investigatorId}`);
+  }
   public getAllReports(): Observable<any> {    
     return this.http.get(this.API + '/reports');
   }
