@@ -14,7 +14,13 @@ export class ReportsService {
     return this.http.post(this.API + '/addreport', report);
   }
 
-  public getReports(): Observable<any> {    
+  public getAllReports(): Observable<any> {    
     return this.http.get(this.API + '/reports');
+  }
+  public getMyReports(userId): Observable<any> {    
+    return this.http.get(this.API + `/userReports/${userId}`);
+  }
+  public getResponsibleReports(responsibleId): Observable<any> {    
+    return this.http.get(this.API + `/responsibleReports/${responsibleId}`);
   }
 }

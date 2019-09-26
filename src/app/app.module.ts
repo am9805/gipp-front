@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { ReportsModule } from './reports/reports.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ReportsModule } from './reports/reports.module';
     CoreModule,
     ReactiveFormsModule,
     FormsModule, 
-    ReportsModule
+    ReportsModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

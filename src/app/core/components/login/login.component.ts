@@ -28,10 +28,9 @@ export class LoginComponent implements OnInit {
     };
     console.log(this.loginForm.get('email').value, this.loginForm.get('password').value);
     this.authService.login(userInfo).subscribe(response => {
+      localStorage.setItem('userRol', response['data']['rol']);
+      localStorage.setItem('userId', response['data']['id']);
       alert(response['message']);
     });
   }
-
-
-
 }
