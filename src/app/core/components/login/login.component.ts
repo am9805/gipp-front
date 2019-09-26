@@ -31,7 +31,4 @@ export class LoginComponent implements OnInit {
       alert(response['message']);
     });
   }
-
-
-
 }
