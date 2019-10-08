@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AddReportComponent implements OnInit {
 
   constructor(public reportService: ReportsService,
-  private router: Router) { }
+    private router: Router) { }
 
   public reportForm: FormGroup;
   public report: FormControl;
@@ -24,16 +24,16 @@ export class AddReportComponent implements OnInit {
     });
   }
 
-  send(){
-    let reportInfo = {
+  send() {
+    const reportInfo = {
       'userid': Number(localStorage.getItem('userId')),
       'zone': this.reportForm.get('zone').value,
       'date': this.reportForm.get('date').value,
       'description': this.reportForm.get('description').value
     };
     this.reportService.addReport(reportInfo).subscribe(response => {
-      if(response){
-        alert(response["message"])
+      if (response) {
+        alert(response['message']);
         this.router.navigate(['/inicio']);
       }
     });

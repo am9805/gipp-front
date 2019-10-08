@@ -20,5 +20,17 @@ export class AuthService {
     return this.http.post(this.API + '/singup', newUserData);
   }
 
+  public isLoged() {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      return userId;
+    } else {
+      return null;
+    }
+  }
 
+  public logout() {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userRol');
+  }
 }
