@@ -9,12 +9,11 @@
                                         {{user.lastname}}</option>
                         </select>
 
-                        <p >Asignar tipo de incidente</p>
-                        <select formControlName="reportType"
-                                [ngClass]="{'no-touch': true}">
-                                <option (ngValue)="Quimico" >Químico</option>
-                                <option (ngValue)="Estructural" >Estructural</option>
-                                <option (ngValue)="Laboral" >Laboral</option>
+                        <p>Asignar tipo de incidente</p>
+                        <select formControlName="reportType" [ngClass]="{'no-touch': true}">
+                                <option (ngValue)="Quimico">Químico</option>
+                                <option (ngValue)="Estructural">Estructural</option>
+                                <option (ngValue)="Laboral">Laboral</option>
                         </select>
 
                 </div>
@@ -34,4 +33,27 @@
 
                 <button type="submit" class="btn-send" (click)="send()">Enviar</button>
         </form>
+</div>
+<div class="buttons">
+        <button *ngIf="rol==='5'" type="submit" class="btn" (click)="showInvestigationAdvanceForm()">Añadir avance de
+                investigación</button>
+        <button type="submit" class="btn" (click)="showInvestigationAdvanceList()">Ver avances de investigación</button>
+</div>
+
+<div *ngIf="investigationAdvanceFormS && rol==='5'" class="investigationAdvanceForm">
+        <h1>Agregar Avance de Investigación:</h1>
+        <form [formGroup]="investigationAdvanceForm" action="">
+                <p>Descripción: </p>
+                <input type="text" formControlName="description" placeholder="Escriba aquí lo encontrado.">
+
+                <button type="submit" class="btn-send" (click)="sendInvestigationAdvance()">Enviar</button>
+        </form>
+</div>
+<div *ngIf="showIAdvanceList" class="investigationAdvanceForm">
+        <h1>Avances de Investigación:</h1>
+        <div  class="investigationAdvanceList" *ngFor="let advance of advances; let i = index">
+                <p> <strong> Avance {{i + 1}} </strong> </p>
+                <p>{{advance.description}}</p>
+        </div>
+        <p *ngIf="!advances"> <strong> No hay avances para este reporte </strong> </p>
 </div>
