@@ -8,11 +8,11 @@
       <p>{{report.description}}</p>      
       <p><b>Tipo de reporte: </b>{{report.reportType}}</p>
       <p><b>Nivel de impacto: </b>{{report.impactLevel}}</p>
-      <button *ngIf="(rol==='1' || 
+      <button class= "btn-send" *ngIf="(rol==='1' || 
                     userId == report.investigatorid ||  
                     userId == report.responsibleid ) &&
                     report.estate == 'Activo'" (click)="goToUpdate(report.reportid)">Gestionar</button>
-    <button (click)="goToComments(report.reportid)">Comentarios</button>
+    <button class= "btn-send"(click)="goToComments(report.reportid)">Comentarios</button>
 
     </div>
   </div>
