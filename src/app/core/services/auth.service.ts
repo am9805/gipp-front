@@ -32,5 +32,7 @@ export class AuthService {
   public logout() {
     localStorage.removeItem('userId');
     localStorage.removeItem('userRol');
+    localStorage.removeItem('reportResponsableRol');
+    localStorage.removeItem('reportInvestigatiorRol');
   }
 }
