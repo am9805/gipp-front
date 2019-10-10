@@ -85,4 +85,8 @@ export class ReportListComponent implements OnInit {
    goToUpdate(id){
     this.router.navigate([`/reporte/gestionar/${id}`]);
    }
+   
+   goToComments(reportId){
+    this.router.navigate([`/reporte/comentarios/${reportId}`]);
+   }
 }

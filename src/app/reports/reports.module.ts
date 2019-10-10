@@ -6,9 +6,10 @@ import { ManageReportsComponent } from './manage-reports/manage-reports.componen
 import { ReportRouter } from './report.routes'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
-  declarations: [ReportListComponent, ManageReportsComponent, AddReportComponent ],
+  declarations: [ReportListComponent, ManageReportsComponent, AddReportComponent, CommentsComponent ],
   imports: [
     CommonModule,
     ReportRouter,

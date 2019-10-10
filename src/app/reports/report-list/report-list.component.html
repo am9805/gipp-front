@@ -6,6 +6,7 @@
       <p><b>Zona:</b> {{report.zone}}</p>
       <p>{{report.description}}</p>
       <button *ngIf="rol==='1' || rol==='5'" (click)="goToUpdate(report.reportid)">Gestionar</button>
+      <button (click)="goToComments(report.reportid)">Comentarios</button>
     </div>
   </div>
 </div>
