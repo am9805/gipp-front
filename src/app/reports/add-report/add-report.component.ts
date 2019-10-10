@@ -29,7 +29,8 @@ export class AddReportComponent implements OnInit {
       'userid': Number(localStorage.getItem('userId')),
       'zone': this.reportForm.get('zone').value,
       'date': this.reportForm.get('date').value,
-      'description': this.reportForm.get('description').value
+      'description': this.reportForm.get('description').value,
+      'estate': 'Activo'
     };
     this.reportService.addReport(reportInfo).subscribe(response => {
       if (response) {

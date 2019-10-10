@@ -23,6 +23,8 @@ export class ManageReportsComponent implements OnInit {
   userId: string;
   advances: any;
   comments: any;
+  reportResponsableRol: string;
+  reportInvestigatorRol: string;
 
   constructor(public reportService: ReportsService,
     private router: Router,
@@ -34,6 +36,8 @@ export class ManageReportsComponent implements OnInit {
   ngOnInit() {
     this.reportId = Number(this.activatedRoute.snapshot.url[2].path.toString());
     this.rol = localStorage.getItem('userRol');
+    this.reportResponsableRol = localStorage.getItem('reportResponsableRol');
+    this.reportInvestigatorRol = localStorage.getItem('reportInvestigatiorRol');
     this.userId = localStorage.getItem('userId');
     this.reportForm = new FormGroup({
       'responsibleId': new FormControl(''),
@@ -108,6 +112,19 @@ export class ManageReportsComponent implements OnInit {
         alert(response['message']);
         this.investigationAdvanceFormS = false;
         this.investigationAdvanceForm.get('description').setValue('');
+      }
+    });
+  }
+
+  finaliceReport(){
+    const reportInfo = {
+      'reportid': this.reportId,
+      'estate': 'Resuelto',
+    };
+    this.reportService.updateReport(reportInfo).subscribe(response => {
+      if (response) {
+        alert(response['message']);
+        this.router.navigate(['/inicio']);
       }
     });
   }
