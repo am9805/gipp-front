@@ -82,7 +82,7 @@ export class ReportListComponent implements OnInit {
     this.reportService.getMyReports(this.userId).subscribe(res => {
       this.reports = res['data'];
       console.log(this.reports);
-      
+
     });
   }
 
@@ -94,10 +94,10 @@ export class ReportListComponent implements OnInit {
 
   goToUpdate(id) {
     this.router.navigate([`/reporte/gestionar/${id}`]);
-   }
-   
-   goToComments(reportId){
+  }
+
+  goToComments(reportId) {
     this.router.navigate([`/reporte/comentarios/${reportId}`]);
-   }
   }
 }
+
