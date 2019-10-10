@@ -1,16 +1,86 @@
 <div class="reportForm">
-    <h1> Gestionar Reporte: {{reportId}}</h1>
-      <form [formGroup]="reportForm" action="">
-        <p *ngIf="rol==='1'" >Responsable</p>
-        <select *ngIf="rol==='1'" formControlName="responsibleId" [ngClass]="{'no-touch': true}">
-                <option selected disabled> Responsable </option>
-                <option *ngFor="let user of users" (ngValue)="user.id" [value]="user.id">{{user.name}} {{user.lastname}}</option>
-        </select>
-        <p *ngIf="rol==='5'">Investigador</p>
-        <select *ngIf="rol==='5'" formControlName="investigatorId" [ngClass]="{'no-touch': true}">
-                <option selected disabled> Investigador </option>
-                <option *ngFor="let user of users" (ngValue)="user.id" [value]="user.id">{{user.name}} {{user.lastname}}</option>
-        </select>
-        <button type="submit" class="btn-send" (click)="send()">Enviar</button>
-      </form>
-  </div>
+        <h1> Gestionar Reporte: {{reportId}}</h1>
+        <form [formGroup]="reportForm" action="">
+                <div *ngIf="rol==='1'">
+                        <p>Responsable</p>
+                        <select formControlName="responsibleId" [ngClass]="{'no-touch': true}">
+                                <option selected disabled> Responsable </option>
+                                <option *ngFor="let user of users" (ngValue)="user.id" [value]="user.id">{{user.name}}
+                                        {{user.lastname}}</option>
+                        </select>
+
+                        <p>Asignar tipo de incidente</p>
+                        <select formControlName="reportType" [ngClass]="{'no-touch': true}">
+                                <option (ngValue)="Quimico">Químico</option>
+                                <option (ngValue)="Estructural">Estructural</option>
+                                <option (ngValue)="Laboral">Laboral</option>
+                        </select>
+
+                </div>
+                <p *ngIf="rol==='5'"> Seleccionar nivel de Investigador</p>
+                <select *ngIf="rol==='5'" formControlName="investigatorId" [ngClass]="{'no-touch': true}">
+                        <option selected disabled> Investigador </option>
+                        <option *ngFor="let user of users" (ngValue)="user.id" [value]="user.id">{{user.name}}
+                                {{user.lastname}}</option>
+                </select>
+
+                <p *ngIf="rol==='5' || rol==='4'">Seleccionar nivel de impacto</p>
+                <select *ngIf="rol==='5' || rol==='4'" formControlName="impactLevel" [ngClass]="{'no-touch': true}">
+                        <option (ngValue)="1" [value]="1">Leve</option>
+                        <option (ngValue)="2" [value]="2">Moderado</option>
+                        <option (ngValue)="3" [value]="3">Grave</option>
+                </select>
+
+                <button type="submit" class="btn-send" (click)="send()">Enviar</button>
+        </form>
+</div>
+<div class="buttons">
+        <button *ngIf="rol==='5'" type="submit" class="btn" (click)="showInvestigationAdvanceForm()">Añadir avance de
+                investigación</button>
+        <button type="submit" class="btn" (click)="showInvestigationAdvanceList()">Ver avances de investigación</button>
+</div>
+
+<div class="buttons">
+        <button *ngIf="rol==='5'" type="submit" class="btn" (click)="showCommentForm()">Añadir comentario
+                al reporte</button>
+        <button type="submit" class="btn" (click)="showCommentsList()">Ver comentarios de reporte</button>
+</div>
+
+
+<div *ngIf="investigationAdvanceFormS && rol==='5'" class="investigationAdvanceForm">
+        <h1>Agregar Avance de Investigación:</h1>
+        <form [formGroup]="investigationAdvanceForm" action="">
+                <p>Descripción: </p>
+                <input type="text" formControlName="description" placeholder="Escriba aquí lo encontrado.">
+
+                <button type="submit" class="btn-send" (click)="sendInvestigationAdvance()">Enviar</button>
+        </form>
+</div>
+
+<div *ngIf="showIAdvanceList" class="investigationAdvanceForm">
+        <h1>Avances de Investigación:</h1>
+        <div class="investigationAdvanceList" *ngFor="let advance of advances; let i = index">
+                <p> <strong> Avance {{i + 1}} </strong> </p>
+                <p>{{advance.description}}</p>
+        </div>
+        <p *ngIf="!advances"> <strong> No hay avances para este reporte </strong> </p>
+</div>
+
+<div *ngIf="commentFormS" class="commentForm">
+        <h1>Agregar Avance de Investigación:</h1>
+        <form [formGroup]="commentForm" action="">
+                <p>Descripción: </p>
+                <input type="text" formControlName="description" placeholder="Escriba aquí su comentario.">
+
+                <button type="submit" class="btn-send" (click)="sendInvestigationAdvance()">Enviar</button>
+        </form>
+</div>
+
+<div *ngIf="showCList" class="commentForm">
+        <h1>comentarios:</h1>
+        <div class="commentsList" *ngFor="let comment of comments; let i = index">
+                <p> <strong> Avance {{i + 1}} </strong> </p>
+                <p>{{advance.description}}</p>
+        </div>
+        <p *ngIf="!comments"> <strong> No hay comentarios para este reporte </strong> </p>
+</div>
