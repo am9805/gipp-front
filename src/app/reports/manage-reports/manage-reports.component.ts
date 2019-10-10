@@ -14,11 +14,15 @@ export class ManageReportsComponent implements OnInit {
   users: any;
   public reportForm: FormGroup;
   public investigationAdvanceForm: FormGroup;
+  public commentForm: FormGroup;
   reportId;
   investigationAdvanceFormS = false;
+  commentFormS = false;
   showIAdvanceList = false;
+  showCList = false;
   userId: string;
   advances: any;
+  comments: any;
 
   constructor(public reportService: ReportsService,
     private router: Router,
@@ -29,7 +33,6 @@ export class ManageReportsComponent implements OnInit {
 
   ngOnInit() {
     this.reportId = Number(this.activatedRoute.snapshot.url[2].path.toString());
-
     this.rol = localStorage.getItem('userRol');
     this.userId = localStorage.getItem('userId');
     this.reportForm = new FormGroup({
@@ -38,7 +41,6 @@ export class ManageReportsComponent implements OnInit {
       'impactLevel': new FormControl(''),
       'reportType': new FormControl(''),
     });
-
     this.investigationAdvanceForm = new FormGroup({
       'reportId': new FormControl(''),
       'investigatorId': new FormControl(''),
@@ -46,6 +48,7 @@ export class ManageReportsComponent implements OnInit {
     });
     this.getUsers();
   }
+
   getUsers() {
     this.userService.getUsers().subscribe(res => {
       this.users = res;
@@ -56,10 +59,24 @@ export class ManageReportsComponent implements OnInit {
     this.investigationAdvanceFormS = !this.investigationAdvanceFormS;
     this.showIAdvanceList = false;
   }
+
+  showCommentForm() {
+    this.commentFormS = !this.commentFormS;
+    this.showCList = false;
+  }
+
   showInvestigationAdvanceList() {
     this.showIAdvanceList = !this.showIAdvanceList;
     this.investigationAdvanceFormS = false;
     this.reportService.getInvestigationAdvByReport(this.reportId).subscribe(res => {
+      this.advances = res['data'];
+    });
+  }
+
+  showCommentsList() {
+    this.showCList = !this.showCList;
+    this.commentFormS = false;
+    this.reportService.getCommentsByReport(this.reportId).subscribe(res => {
       this.advances = res['data'];
     });
   }
@@ -91,6 +108,21 @@ export class ManageReportsComponent implements OnInit {
         alert(response['message']);
         this.investigationAdvanceFormS = false;
         this.investigationAdvanceForm.get('description').setValue('');
+      }
+    });
+  }
+
+  sendComment() {
+    const commentInfo = {
+      'reportid': this.reportId,
+      'investigatorid': Number(this.userId),
+      'description': this.commentForm.get('description').value,
+    };
+    this.reportService.addComment(commentInfo).subscribe(response => {
+      if (response) {
+        alert(response['message']);
+        this.commentFormS = false;
+        this.commentForm.get('description').setValue('');
       }
     });
   }

@@ -37,4 +37,12 @@ export class ReportsService {
   public getInvestigationAdvByReport(reportId): Observable<any> {
     return this.http.get(this.API + `/reportInvestigations/${reportId}`);
   }
+
+  public getCommentsByReport(commentId): Observable<any> {
+    return this.http.get(this.API + `/reportComments/${commentId}`);
+  }
+
+  public addComment(comment): Observable<any> {
+    return this.http.post(this.API + '/addComment', comment);
+  }
 }

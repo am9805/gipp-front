@@ -1,7 +1,7 @@
 <div *ngIf="reports" >
-  <div class="card" *ngFor="let report of reports">
-    <div class="container">
-      <h2>Reporte número {{report.reportid}}</h2>
+  <div class="container">
+    <div class="card" *ngFor="let report of reports">
+      <h2 class="card-tittle">Reporte número {{report.reportid}}</h2>
       <p><b>Fecha:</b> {{report.date}}</p>
       <p><b>Zona:</b> {{report.zone}}</p>
       <p>{{report.description}}</p>

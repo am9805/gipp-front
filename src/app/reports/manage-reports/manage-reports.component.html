@@ -40,6 +40,13 @@
         <button type="submit" class="btn" (click)="showInvestigationAdvanceList()">Ver avances de investigación</button>
 </div>
 
+<div class="buttons">
+        <button *ngIf="rol==='5'" type="submit" class="btn" (click)="showCommentForm()">Añadir comentario
+                al reporte</button>
+        <button type="submit" class="btn" (click)="showCommentsList()">Ver comentarios de reporte</button>
+</div>
+
+
 <div *ngIf="investigationAdvanceFormS && rol==='5'" class="investigationAdvanceForm">
         <h1>Agregar Avance de Investigación:</h1>
         <form [formGroup]="investigationAdvanceForm" action="">
@@ -49,11 +56,31 @@
                 <button type="submit" class="btn-send" (click)="sendInvestigationAdvance()">Enviar</button>
         </form>
 </div>
+
 <div *ngIf="showIAdvanceList" class="investigationAdvanceForm">
         <h1>Avances de Investigación:</h1>
-        <div  class="investigationAdvanceList" *ngFor="let advance of advances; let i = index">
+        <div class="investigationAdvanceList" *ngFor="let advance of advances; let i = index">
                 <p> <strong> Avance {{i + 1}} </strong> </p>
                 <p>{{advance.description}}</p>
         </div>
         <p *ngIf="!advances"> <strong> No hay avances para este reporte </strong> </p>
+</div>
+
+<div *ngIf="commentFormS" class="commentForm">
+        <h1>Agregar Avance de Investigación:</h1>
+        <form [formGroup]="commentForm" action="">
+                <p>Descripción: </p>
+                <input type="text" formControlName="description" placeholder="Escriba aquí su comentario.">
+
+                <button type="submit" class="btn-send" (click)="sendInvestigationAdvance()">Enviar</button>
+        </form>
+</div>
+
+<div *ngIf="showCList" class="commentForm">
+        <h1>comentarios:</h1>
+        <div class="commentsList" *ngFor="let comment of comments; let i = index">
+                <p> <strong> Avance {{i + 1}} </strong> </p>
+                <p>{{advance.description}}</p>
+        </div>
+        <p *ngIf="!comments"> <strong> No hay comentarios para este reporte </strong> </p>
 </div>
