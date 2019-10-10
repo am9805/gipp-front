@@ -23,19 +23,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  send(){
-    let userInfo = {
+  send() {
+    const userInfo = {
       'email': this.loginForm.get('email').value,
-      'password':  this.loginForm.get('password').value
+      'password': this.loginForm.get('password').value
     };
-    console.log(this.loginForm.get('email').value, this.loginForm.get('password').value);
     this.authService.login(userInfo).subscribe(response => {
       localStorage.setItem('userRol', response['data']['rol']);
       localStorage.setItem('userId', response['data']['id']);
-        if(response){
-          alert(response["message"])
-          this.router.navigate(['/inicio']);
-        }
+      if (response) {
+        alert(response['message']);
+        this.router.navigate(['/inicio']);
+      }
     });
   }
 }

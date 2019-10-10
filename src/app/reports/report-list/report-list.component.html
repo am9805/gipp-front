@@ -1,9 +1,16 @@
-<div class="container">
+<div *ngIf="reports" >
   <div class="card" *ngFor="let report of reports">
-    <h2 class="card-tittle">Reporte número {{report.reportid}}</h2>
-    <h4><b>{{report.userid | getUserInfo}}</b></h4>
-    <p><b>Fecha:</b> {{report.date}}</p>
-    <p><b>Zona:</b> {{report.zone}}</p>
-    <p>{{report.description}}</p>
+    <div class="container">
+      <h2>Reporte número {{report.reportid}}</h2>
+      <p><b>Fecha:</b> {{report.date}}</p>
+      <p><b>Zona:</b> {{report.zone}}</p>
+      <p>{{report.description}}</p>
+      <button *ngIf="rol==='1' || rol==='5'" (click)="goToUpdate(report.reportid)">Gestionar</button>
+    </div>
   </div>
 </div>
+  <div *ngIf="!reports" class="card">
+    <div class="container">
+      <h2>Aún no tienes reportes</h2>
+    </div>
+  </div>

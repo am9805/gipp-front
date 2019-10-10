@@ -10,17 +10,31 @@ export class ReportsService {
   public API = 'https://gipp-back.herokuapp.com';
   constructor(private http: HttpClient) { }
 
-  public addReport(report): Observable<any> {    
+  public addReport(report): Observable<any> {
     return this.http.post(this.API + '/addreport', report);
   }
-
-  public getAllReports(): Observable<any> {    
+  public getInvestigatorReports(investigatorId): Observable<any> {
+    return this.http.get(this.API + `/investigatorReports/${investigatorId}`);
+  }
+  public getAllReports(): Observable<any> {
     return this.http.get(this.API + '/reports');
   }
-  public getMyReports(userId): Observable<any> {    
+  public getMyReports(userId): Observable<any> {
     return this.http.get(this.API + `/userReports/${userId}`);
   }
-  public getResponsibleReports(responsibleId): Observable<any> {    
+  public getResponsibleReports(responsibleId): Observable<any> {
     return this.http.get(this.API + `/responsibleReports/${responsibleId}`);
+  }
+
+  public updateReport(report): Observable<any> {
+    return this.http.put(this.API + '/editReport', report);
+  }
+
+  public addInvestigationAdv(advance): Observable<any> {
+    return this.http.post(this.API + '/addInvestigation', advance);
+  }
+
+  public getInvestigationAdvByReport(reportId): Observable<any> {
+    return this.http.get(this.API + `/reportInvestigations/${reportId}`);
   }
 }

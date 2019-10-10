@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ReportListComponent implements OnInit {
   path;
   userId: string;
+  rol: string;
 
   constructor(
     private reportService: ReportsService,
@@ -20,9 +21,10 @@ export class ReportListComponent implements OnInit {
 
   reports = [];
   ngOnInit() {
+    this.rol = localStorage.getItem('userRol');
     this.path = this.activatedRoute.snapshot.url[2].path.toString();
     this.userId = localStorage.getItem('userId');
-    console.log(this.path);
+    
     switch(this.path){ 
       case 'misReportes': { 
          this.getMyReports(); 
@@ -37,7 +39,7 @@ export class ReportListComponent implements OnInit {
         break; 
      } 
      case 'investigador': { 
-      //statements; 
+      this.getInvestigatorReports();
       break; 
    } 
       default: { 
@@ -51,30 +53,26 @@ export class ReportListComponent implements OnInit {
    getAllReports(){
     this.reportService.getAllReports().subscribe(res =>{
       this.reports = res
-      console.log(this.reports);
     });
    }
 
    getResponsibleReports(){
     this.reportService.getResponsibleReports(this.userId).subscribe(res =>{
       this.reports = res['data']
-      console.log(this.reports);
     });
    }
  /**
   * TODAVIA NO ESTA
   */
    getInvestigatorReports(){
-    this.reportService.getAllReports().subscribe(res =>{
+    this.reportService.getInvestigatorReports(this.userId).subscribe(res =>{
       this.reports = res['data']
-      console.log(this.reports);
     });
    }
 
    getMyReports(){
     this.reportService.getMyReports(this.userId).subscribe(res =>{
       this.reports = res['data']
-      console.log(this.reports);
     });
    }
 
@@ -82,5 +80,9 @@ export class ReportListComponent implements OnInit {
      this.userService.getUserById(id).subscribe(res =>{
       return `${res['data']['name']} ${res['data']['lastname']}`;
     });
+   }
+
+   goToUpdate(id){
+    this.router.navigate([`/reporte/gestionar/${id}`]);
    }
 }

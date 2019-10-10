@@ -1,8 +1,10 @@
 <div class="homeForm">
   <h1>GIPP</h1>
+    <button *ngIf="rol==='1'" type="submit" class="btn-send" (click)="goToRegister()">Registrar Usuario</button>
     <button type="submit" class="btn-send" (click)="goToCreateReport()">Crear reporte</button>
     <button type="submit" class="btn-send" (click)="goToMyReports()">Ver mis reportes creados</button>
     <button type="submit" class="btn-send" (click)="goToResponsibleReports()">Ver mis reportes como responsable</button>
     <button type="submit" class="btn-send" (click)="goToInvestigatorReports()">Ver mis reportes como investigador</button>
-    <button type="submit" class="btn-send" (click)="goToAllReports()">Ver todos los reportes</button>
+    <button *ngIf="rol==='1'" type="submit" class="btn-send" (click)="goToAllReports()">Ver todos los reportes</button>
+    <button type="submit" class="btn-send" (click)="logout()">Cerrar Sesión</button>
 </div>
