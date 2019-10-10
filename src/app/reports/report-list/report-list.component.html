@@ -5,14 +5,15 @@
       <p><b>Estado: </b>{{report.estate}}</p>
       <p><b>Fecha:</b> {{report.date}}</p>
       <p><b>Zona:</b> {{report.zone}}</p>
-      <p>{{report.description}}</p>
-      
+      <p>{{report.description}}</p>      
       <p><b>Tipo de reporte: </b>{{report.reportType}}</p>
       <p><b>Nivel de impacto: </b>{{report.impactLevel}}</p>
       <button *ngIf="(rol==='1' || 
                     userId == report.investigatorid ||  
                     userId == report.responsibleid ) &&
                     report.estate == 'Activo'" (click)="goToUpdate(report.reportid)">Gestionar</button>
+    <button (click)="goToComments(report.reportid)">Comentarios</button>
+
     </div>
   </div>
 </div>

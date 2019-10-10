@@ -50,6 +50,9 @@ export class ManageReportsComponent implements OnInit {
       'investigatorId': new FormControl(''),
       'description': new FormControl(''),
     });
+    this.commentForm = new FormGroup({
+      'description': new FormControl(''),
+    });
     this.getUsers();
   }
 
@@ -64,11 +67,10 @@ export class ManageReportsComponent implements OnInit {
     this.showIAdvanceList = false;
   }
 
-  showCommentForm() {
+  showCommentsList() {
     this.commentFormS = !this.commentFormS;
     this.showCList = false;
   }
-
   showInvestigationAdvanceList() {
     this.showIAdvanceList = !this.showIAdvanceList;
     this.investigationAdvanceFormS = false;
@@ -77,11 +79,11 @@ export class ManageReportsComponent implements OnInit {
     });
   }
 
-  showCommentsList() {
+  getCommentsList() {
     this.showCList = !this.showCList;
     this.commentFormS = false;
     this.reportService.getCommentsByReport(this.reportId).subscribe(res => {
-      this.advances = res['data'];
+      this.comments = res['data'];
     });
   }
 
@@ -131,8 +133,8 @@ export class ManageReportsComponent implements OnInit {
 
   sendComment() {
     const commentInfo = {
-      'reportid': this.reportId,
-      'investigatorid': Number(this.userId),
+      'reportid': Number(this.reportId),
+      'userid': Number(this.userId),
       'description': this.commentForm.get('description').value,
     };
     this.reportService.addComment(commentInfo).subscribe(response => {

@@ -42,7 +42,9 @@
         <button type="submit" class="btn" (click)="showInvestigationAdvanceList()">Ver avances de investigación</button>
 </div>
 
+
 <div *ngIf="investigationAdvanceFormS && reportResponsableRol" class="investigationAdvanceForm">
+
         <h1>Agregar Avance de Investigación:</h1>
         <form [formGroup]="investigationAdvanceForm" action="">
                 <p>Descripción: </p>
@@ -59,6 +61,8 @@
         </div>
         <p *ngIf="!advances"> <strong> No hay avances para este reporte </strong> </p>
 </div>
+
 <div class="buttons">
         <button *ngIf="reportResponsableRol" type="submit" class="btn" (click)="finaliceReport()">Incidente Resuelto</button>
+
 </div>
