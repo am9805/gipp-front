@@ -1,20 +1,20 @@
 <div class="buttons">
-  <button type="submit" class="btn" (click)="showCommentsList()">Añadir comentario
+  <button class= "btn-send" type="submit" (click)="showCommentsList()">Añadir comentario
           al reporte</button>
-  <button type="submit" class="btn" (click)="getCommentsList()">Ver comentarios de reporte</button>
+  <button class= "btn-send" type="submit" (click)="getCommentsList()">Ver comentarios de reporte</button>
 </div>
 
 <div *ngIf="commentFormS" class="commentForm">
-  <h1>Agregar comentario:</h1>
+  <h1>Agregar comentario</h1>
   <form [formGroup]="commentForm" action="">
-          <p>Descripción: </p>
+          <p>Descripción</p>
           <input type="text" formControlName="description" placeholder="Escriba aquí su comentario.">
           <button type="submit" class="btn-send" (click)="sendComment()">Enviar</button>
   </form>
 </div>
 
 <div *ngIf="showCList" class="commentForm">
-  <h1>comentarios:</h1>
+  <h1>comentarios</h1>
   <div class="commentsList" *ngFor="let comment of comments; let i = index">
           <p> <strong> Comentario {{i + 1}} </strong> </p>
           <p>{{comment.description}}</p>
